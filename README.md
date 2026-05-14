@@ -1,1 +1,166 @@
-# cinematic-quotes
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI TERMINAL</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:#00ff88;
+    font-family:Courier New, monospace;
+    overflow:hidden;
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+.container{
+    padding:50px;
+}
+
+.title{
+    font-size:42px;
+    margin-bottom:30px;
+    text-shadow:0 0 20px #00ff88;
+}
+
+.line{
+    font-size:22px;
+    margin:15px 0;
+    opacity:0;
+    animation:fadeIn 1s forwards;
+}
+
+.line:nth-child(2){animation-delay:1s;}
+.line:nth-child(3){animation-delay:3s;}
+.line:nth-child(4){animation-delay:5s;}
+.line:nth-child(5){animation-delay:7s;}
+
+@keyframes fadeIn{
+    to{
+        opacity:1;
+    }
+}
+
+.cursor{
+    display:inline-block;
+    width:10px;
+    background:#00ff88;
+    animation:blink 0.8s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+
+button{
+    margin-top:40px;
+    background:black;
+    border:2px solid #00ff88;
+    color:#00ff88;
+    padding:15px 30px;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#00ff88;
+    color:black;
+    box-shadow:0 0 20px #00ff88;
+}
+
+#secret{
+    margin-top:30px;
+    font-size:24px;
+    opacity:0;
+    transition:1s;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+
+<div class="title">
+AI SYSTEM TERMINAL<span class="cursor"></span>
+</div>
+
+<div class="line">> Initializing neural system...</div>
+<div class="line">> Accessing encrypted memories...</div>
+<div class="line">> Emotion scan complete.</div>
+<div class="line">> Welcome back, User.</div>
+
+<button onclick="revealSecret()">
+ACCESS FILE
+</button>
+
+<div id="secret">
+⚠️ FILE OPENED:  
+"Some memories never stop haunting the system."
+</div>
+
+</div>
+
+<script>
+function revealSecret(){
+    const secret = document.getElementById("secret");
+    secret.style.opacity = 1;
+}
+
+// MATRIX EFFECT
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters =
+"01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize = 14;
+const columns = canvas.width/fontSize;
+
+const drops = [];
+
+for(let x = 0; x < columns; x++)
+    drops[x] = 1;
+
+function draw(){
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "#00ff88";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++){
+
+        const text =
+        letters[Math.floor(Math.random()*letters.length)];
+
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize > canvas.height &&
+           Math.random() > 0.975)
+           drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw,35);
+</script>
+
+</body>
+</html>
