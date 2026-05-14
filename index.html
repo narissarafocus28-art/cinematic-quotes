@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinematic Quotes</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f0f0f, #1e1e2f);
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    #quote {
+      font-size: 24px;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      min-height: 120px;
+    }
+
+    #quote.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 50px;
+      background: white;
+      color: black;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>🌙 CINEMATIC QUOTES</h1>
+
+    <div id="quote" class="show">
+      กดปุ่มด้านล่าง เพื่อฟังประโยคที่หัวใจยังจำได้
+    </div>
+
+    <button onclick="newQuote()">สุ่มข้อความ ✨</button>
+  </div>
+
+  <script>
+    const quotes = [
+      "บางคนหายไปจากชีวิต แต่ไม่เคยหายไปจากความทรงจำ",
+      "เมืองทั้งเมืองยังสว่าง แต่หัวใจกลับมืดลงทุกคืน",
+      "เราโตขึ้น พร้อมกับการเงียบในเรื่องที่เคยร้องไห้",
+      "ความคิดถึง เป็นบ้านที่ไม่มีใครย้ายออกได้",
+      "บางความสัมพันธ์ จบไปนานแล้ว แต่ยังอยู่ในเพลงเดิม"
+    ];
+
+    function newQuote() {
+      const quote = document.getElementById("quote");
+
+      quote.classList.remove("show");
+
+      setTimeout(() => {
+        const random =
+          quotes[Math.floor(Math.random() * quotes.length)];
+
+        quote.innerText = random;
+
+        quote.classList.add("show");
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
