@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI TERMINAL</title>
+<title>Cyber AI System</title>
 
 <style>
+
 body{
     margin:0;
-    background:black;
-    color:#00ff88;
-    font-family:Courier New, monospace;
     overflow:hidden;
+    background:black;
+    color:#00ff99;
+    font-family:Courier New, monospace;
 }
 
 canvas{
@@ -22,69 +23,62 @@ canvas{
 }
 
 .container{
-    padding:50px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
 }
 
-.title{
-    font-size:42px;
-    margin-bottom:30px;
-    text-shadow:0 0 20px #00ff88;
+h1{
+    font-size:50px;
+    text-shadow:0 0 20px #00ff99;
 }
 
-.line{
-    font-size:22px;
-    margin:15px 0;
-    opacity:0;
-    animation:fadeIn 1s forwards;
+p{
+    font-size:20px;
 }
 
-.line:nth-child(2){animation-delay:1s;}
-.line:nth-child(3){animation-delay:3s;}
-.line:nth-child(4){animation-delay:5s;}
-.line:nth-child(5){animation-delay:7s;}
-
-@keyframes fadeIn{
-    to{
-        opacity:1;
-    }
-}
-
-.cursor{
-    display:inline-block;
-    width:10px;
-    background:#00ff88;
-    animation:blink 0.8s infinite;
-}
-
-@keyframes blink{
-    50%{
-        opacity:0;
-    }
+input{
+    margin-top:20px;
+    padding:15px;
+    width:300px;
+    background:black;
+    border:2px solid #00ff99;
+    color:#00ff99;
+    font-size:18px;
 }
 
 button{
-    margin-top:40px;
-    background:black;
-    border:2px solid #00ff88;
-    color:#00ff88;
+    margin-top:20px;
     padding:15px 30px;
-    cursor:pointer;
+    background:black;
+    border:2px solid #00ff99;
+    color:#00ff99;
     font-size:18px;
+    cursor:pointer;
     transition:0.3s;
 }
 
 button:hover{
-    background:#00ff88;
+    background:#00ff99;
     color:black;
-    box-shadow:0 0 20px #00ff88;
+    box-shadow:0 0 20px #00ff99;
 }
 
-#secret{
+#result{
     margin-top:30px;
     font-size:24px;
+    min-height:40px;
+}
+
+.secret{
+    margin-top:20px;
+    font-size:18px;
     opacity:0;
     transition:1s;
 }
+
 </style>
 </head>
 
@@ -94,72 +88,138 @@ button:hover{
 
 <div class="container">
 
-<div class="title">
-AI SYSTEM TERMINAL<span class="cursor"></span>
-</div>
+<h1>AI SECURITY SYSTEM</h1>
 
-<div class="line">> Initializing neural system...</div>
-<div class="line">> Accessing encrypted memories...</div>
-<div class="line">> Emotion scan complete.</div>
-<div class="line">> Welcome back, User.</div>
+<p>ENTER PASSWORD TO ACCESS DATABASE</p>
 
-<button onclick="revealSecret()">
-ACCESS FILE
+<input
+type="password"
+id="password"
+placeholder="Enter password..."
+>
+
+<br>
+
+<button onclick="login()">
+LOGIN
 </button>
 
-<div id="secret">
-⚠️ FILE OPENED:  
-"Some memories never stop haunting the system."
+<div id="result"></div>
+
+<div id="secret" class="secret">
+⚠️ ACCESS FILE OPENED...<br><br>
+"Some memories should never be recovered."
 </div>
 
 </div>
 
 <script>
-function revealSecret(){
-    const secret = document.getElementById("secret");
-    secret.style.opacity = 1;
-}
 
-// MATRIX EFFECT
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
+// LOGIN SYSTEM
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+function login(){
 
-const letters =
-"01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize = 14;
-const columns = canvas.width/fontSize;
+    const password =
+    document.getElementById("password").value;
 
-const drops = [];
+    const result =
+    document.getElementById("result");
 
-for(let x = 0; x < columns; x++)
-    drops[x] = 1;
+    const secret =
+    document.getElementById("secret");
 
-function draw(){
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    if(password === "narissara"){
 
-    ctx.fillStyle = "#00ff88";
-    ctx.font = fontSize + "px monospace";
+        result.innerHTML =
+        "✅ ACCESS GRANTED";
 
-    for(let i = 0; i < drops.length; i++){
+        result.style.color =
+        "#00ff99";
 
-        const text =
-        letters[Math.floor(Math.random()*letters.length)];
+        secret.style.opacity = 1;
 
-        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    }else{
 
-        if(drops[i]*fontSize > canvas.height &&
-           Math.random() > 0.975)
-           drops[i] = 0;
+        result.innerHTML =
+        "❌ ACCESS DENIED";
 
-        drops[i]++;
+        result.style.color =
+        "red";
+
+        secret.style.opacity = 0;
     }
 }
 
+// MATRIX EFFECT
+
+const canvas =
+document.getElementById("matrix");
+
+const ctx =
+canvas.getContext("2d");
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+const letters =
+"01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+const fontSize = 14;
+
+const columns =
+canvas.width/fontSize;
+
+const drops = [];
+
+for(let x=0;x<columns;x++)
+drops[x]=1;
+
+function draw(){
+
+ctx.fillStyle =
+"rgba(0,0,0,0.05)";
+
+ctx.fillRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+ctx.fillStyle =
+"#00ff99";
+
+ctx.font =
+fontSize + "px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text =
+letters[Math.floor(Math.random()*letters.length)];
+
+ctx.fillText(
+text,
+i*fontSize,
+drops[i]*fontSize
+);
+
+if(
+drops[i]*fontSize >
+canvas.height
+&&
+Math.random()>0.975
+)
+drops[i]=0;
+
+drops[i]++;
+}
+}
+
 setInterval(draw,35);
+
 </script>
 
 </body>
