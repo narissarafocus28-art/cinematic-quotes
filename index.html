@@ -1,103 +1,168 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cinematic Quotes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI TERMINAL</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #0f0f0f, #1e1e2f);
-      font-family: Arial, sans-serif;
-      color: white;
-      overflow: hidden;
-    }
+<style>
+body{
+    margin:0;
+    background:black;
+    color:#00ff88;
+    font-family:Courier New, monospace;
+    overflow:hidden;
+}
 
-    .container {
-      text-align: center;
-      padding: 40px;
-      max-width: 700px;
-    }
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 30px;
-      letter-spacing: 2px;
-    }
+.container{
+    padding:50px;
+}
 
-    #quote {
-      font-size: 24px;
-      line-height: 1.8;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-      min-height: 120px;
-    }
+.title{
+    font-size:42px;
+    margin-bottom:30px;
+    text-shadow:0 0 20px #00ff88;
+}
 
-    #quote.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.line{
+    font-size:22px;
+    margin:15px 0;
+    opacity:0;
+    animation:fadeIn 1s forwards;
+}
 
-    button {
-      margin-top: 30px;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 50px;
-      background: white;
-      color: black;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+.line:nth-child(2){animation-delay:1s;}
+.line:nth-child(3){animation-delay:3s;}
+.line:nth-child(4){animation-delay:5s;}
+.line:nth-child(5){animation-delay:7s;}
 
-    button:hover {
-      transform: scale(1.05);
+@keyframes fadeIn{
+    to{
+        opacity:1;
     }
-  </style>
+}
+
+.cursor{
+    display:inline-block;
+    width:10px;
+    background:#00ff88;
+    animation:blink 0.8s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+
+button{
+    margin-top:40px;
+    background:black;
+    border:2px solid #00ff88;
+    color:#00ff88;
+    padding:15px 30px;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#00ff88;
+    color:black;
+    box-shadow:0 0 20px #00ff88;
+}
+
+#secret{
+    margin-top:30px;
+    font-size:24px;
+    opacity:0;
+    transition:1s;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>🌙 CINEMATIC QUOTES</h1>
+<canvas id="matrix"></canvas>
 
-    <div id="quote" class="show">
-      กดปุ่มด้านล่าง เพื่อฟังประโยคที่หัวใจยังจำได้
-    </div>
+<div class="container">
 
-    <button onclick="newQuote()">สุ่มข้อความ ✨</button>
-  </div>
+<div class="title">
+AI SYSTEM TERMINAL<span class="cursor"></span>
+</div>
 
-  <script>
-    const quotes = [
-      "บางคนหายไปจากชีวิต แต่ไม่เคยหายไปจากความทรงจำ",
-      "เมืองทั้งเมืองยังสว่าง แต่หัวใจกลับมืดลงทุกคืน",
-      "เราโตขึ้น พร้อมกับการเงียบในเรื่องที่เคยร้องไห้",
-      "ความคิดถึง เป็นบ้านที่ไม่มีใครย้ายออกได้",
-      "บางความสัมพันธ์ จบไปนานแล้ว แต่ยังอยู่ในเพลงเดิม"
-    ];
+<div class="line">> Initializing neural system...</div>
+<div class="line">> Accessing encrypted memories...</div>
+<div class="line">> Emotion scan complete.</div>
+<div class="line">> Welcome back, User.</div>
 
-    function newQuote() {
-      const quote = document.getElementById("quote");
+<button onclick="revealSecret()">
+ACCESS FILE
+</button>
 
-      quote.classList.remove("show");
+<div id="secret">
+⚠️ FILE OPENED:  
+"Some memories never stop haunting the system."
+</div>
 
-      setTimeout(() => {
-        const random =
-          quotes[Math.floor(Math.random() * quotes.length)];
+</div>
 
-        quote.innerText = random;
+<script>
+function revealSecret(){
+    const secret = document.getElementById("secret");
+    secret.style.opacity = 1;
+}
 
-        quote.classList.add("show");
-      }, 300);
+// MATRIX EFFECT
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters =
+"01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize = 14;
+const columns = canvas.width/fontSize;
+
+const drops = [];
+
+for(let x = 0; x < columns; x++)
+    drops[x] = 1;
+
+function draw(){
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "#00ff88";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++){
+
+        const text =
+        letters[Math.floor(Math.random()*letters.length)];
+
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize > canvas.height &&
+           Math.random() > 0.975)
+           drops[i] = 0;
+
+        drops[i]++;
     }
-  </script>
+}
+
+setInterval(draw,35);
+</script>
 
 </body>
 </html>
+      
+   
