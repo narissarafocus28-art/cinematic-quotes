@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kochakorn Lover ♡</title>
+<title>Kochakorn Archive</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,161 +21,320 @@
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:linear-gradient(
+    background:
+    linear-gradient(
     135deg,
-    #ffd6ec,
-    #ffe8c7,
-    #d8f3ff
+    #fff7f8,
+    #fffdf8,
+    #f8f7ff
     );
 
-    min-height:100vh;
+    color:#4a4a4a;
+
+    font-family:'Poppins',sans-serif;
+
     overflow-x:hidden;
-    color:#444;
 }
 
-/* floating hearts */
+/* NAVBAR */
 
-.heart{
+nav{
+
+    width:100%;
+    padding:25px 8%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
     position:fixed;
-    color:white;
-    animation:float 8s linear infinite;
-    opacity:0.5;
-    z-index:0;
-}
 
-@keyframes float{
-    from{
-        transform:translateY(100vh);
-    }
+    top:0;
 
-    to{
-        transform:translateY(-120vh);
-    }
-}
+    backdrop-filter:blur(20px);
 
-/* header */
-
-header{
-    text-align:center;
-    padding:80px 20px 40px;
-    position:relative;
-    z-index:1;
-}
-
-header h1{
-    font-size:60px;
-    color:white;
-    text-shadow:0 0 15px rgba(255,255,255,0.8);
-}
-
-header p{
-    margin-top:15px;
-    font-size:24px;
-    color:#fff;
-}
-
-/* card section */
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    padding-bottom:80px;
-    position:relative;
-    z-index:1;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
-    gap:25px;
-}
-
-.card{
-    background:rgba(255,255,255,0.75);
-    backdrop-filter:blur(12px);
-    border-radius:30px;
-    padding:30px;
-    transition:0.4s;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-.card:hover{
-    transform:translateY(-10px) scale(1.02);
-}
-
-.card h2{
-    margin-bottom:15px;
-    color:#ff5fa2;
-}
-
-.card p{
-    line-height:1.8;
-}
-
-/* button */
-
-button{
-    margin-top:20px;
-    padding:14px 28px;
-    border:none;
-    border-radius:50px;
-    background:#ff5fa2;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 20px #ff8ec2;
-}
-
-/* popup */
-
-#popup{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-
-    background:white;
-    padding:40px;
-    border-radius:30px;
-
-    text-align:center;
-
-    box-shadow:0 20px 50px rgba(0,0,0,0.2);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:0.5s;
+    background:rgba(255,255,255,0.4);
 
     z-index:999;
 }
 
-#popup.show{
-    opacity:1;
-    pointer-events:auto;
+.logo{
+
+    font-family:
+    'Cormorant Garamond',serif;
+
+    font-size:34px;
+
+    color:#c48b9f;
 }
 
-#popup h2{
-    color:#ff5fa2;
-    margin-bottom:15px;
+.menu{
+
+    display:flex;
+    gap:35px;
 }
 
-/* footer */
+.menu a{
+
+    text-decoration:none;
+
+    color:#666;
+
+    transition:0.3s;
+}
+
+.menu a:hover{
+
+    color:#c48b9f;
+}
+
+/* HERO */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:120px 20px 60px;
+}
+
+.hero-content{
+
+    max-width:900px;
+}
+
+.hero h1{
+
+    font-size:90px;
+
+    line-height:1;
+
+    font-family:
+    'Cormorant Garamond',serif;
+
+    color:#c48b9f;
+}
+
+.hero p{
+
+    margin-top:25px;
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    color:#777;
+}
+
+.hero button{
+
+    margin-top:40px;
+
+    padding:16px 38px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:#d9a5b3;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:0.4s;
+}
+
+.hero button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 15px 30px
+    rgba(217,165,179,0.35);
+}
+
+/* SECTION */
+
+section{
+
+    width:88%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    padding:100px 0;
+}
+
+.section-title{
+
+    margin-bottom:50px;
+
+    font-size:55px;
+
+    font-family:
+    'Cormorant Garamond',serif;
+
+    color:#c48b9f;
+}
+
+/* CARDS */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+}
+
+.card{
+
+    background:
+    rgba(255,255,255,0.65);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:35px;
+
+    padding:35px;
+
+    transition:0.4s;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.05);
+}
+
+.card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,0.08);
+}
+
+.card h3{
+
+    margin-bottom:18px;
+
+    color:#c48b9f;
+
+    font-size:28px;
+
+    font-family:
+    'Cormorant Garamond',serif;
+}
+
+.card p{
+
+    line-height:1.9;
+}
+
+/* QUOTE */
+
+.quote{
+
+    text-align:center;
+
+    padding:120px 20px;
+
+    font-size:42px;
+
+    line-height:1.7;
+
+    font-family:
+    'Cormorant Garamond',serif;
+
+    color:#c48b9f;
+}
+
+/* SOCIAL */
+
+.socials{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-top:25px;
+}
+
+.socials a{
+
+    padding:14px 24px;
+
+    border-radius:50px;
+
+    background:white;
+
+    text-decoration:none;
+
+    color:#c48b9f;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+}
+
+.socials a:hover{
+
+    background:#d9a5b3;
+
+    color:white;
+}
+
+/* FOOTER */
 
 footer{
+
     text-align:center;
-    padding:40px;
-    color:white;
-    font-size:18px;
+
+    padding:60px 20px;
+
+    color:#999;
+}
+
+/* FLOATING BLUR */
+
+.blur{
+
+    position:fixed;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,192,203,0.18);
+
+    filter:blur(80px);
+
+    z-index:-1;
+}
+
+.blur1{
+    top:-80px;
+    left:-80px;
+}
+
+.blur2{
+    bottom:-100px;
+    right:-100px;
 }
 
 </style>
@@ -177,97 +342,260 @@ footer{
 
 <body>
 
-<!-- floating hearts -->
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
 
-<div class="heart" style="left:10%;font-size:25px;">♡</div>
-<div class="heart" style="left:25%;font-size:18px;animation-delay:2s;">♡</div>
-<div class="heart" style="left:40%;font-size:30px;animation-delay:4s;">♡</div>
-<div class="heart" style="left:60%;font-size:20px;animation-delay:1s;">♡</div>
-<div class="heart" style="left:80%;font-size:28px;animation-delay:5s;">♡</div>
+<nav>
 
-<header>
+<div class="logo">
+Kochakorn Archive
+</div>
 
-<h1>🌸 Kochakorn Lover 🌸</h1>
+<div class="menu">
+
+<a href="#about">About</a>
+<a href="#works">Works</a>
+<a href="#moments">Moments</a>
+<a href="#social">Social</a>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<div class="hero-content">
+
+<h1>
+Kochakorn<br>
+Nimakorn
+</h1>
 
 <p>
-รักพี่เงาะที่สุดในจักรวาล ♡
+
+นักแสดงหญิงชาวไทย ผู้เป็นที่จดจำจากบทบาทละครยุคคลาสสิก
+และเสน่ห์อันสง่างามที่อยู่ในความทรงจำของผู้ชมเสมอ ✨
+
 </p>
 
-</header>
+<button onclick="showMessage()">
+OPEN ARCHIVE
+</button>
 
-<div class="container">
+</div>
+
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">
+About
+</h2>
 
 <div class="grid">
 
 <div class="card">
 
-<h2>📸 Favorite Moments</h2>
+<h3>Profile</h3>
 
 <p>
-รวมโมเมนต์น่ารัก ใจละลาย ✨
-</p>
 
-<button onclick="showPopup()">
-OPEN MEMORY
-</button>
+กชกร นิมากรณ์ (เงาะ)
+เกิดวันที่ 20 สิงหาคม พ.ศ. 2515
+เริ่มเข้าสู่วงการจากการแสดงละครโทรทัศน์
+และได้รับตำแหน่งรองอันดับ 2
+นางสาวไทย พ.ศ. 2536 ✨
 
-</div>
-
-<div class="card">
-
-<h2>🎬 Drama Archive</h2>
-
-<p>
-คลังรวมละคร ซีรีส์ บทสัมภาษณ์
-งานอีเวนต์ และทุก performance
- 🌷
 </p>
 
 </div>
 
 <div class="card">
 
-<h2>💌 Fan Message</h2>
+<h3>Education</h3>
 
 <p>
+
+จบการศึกษาจาก
+คณะรัฐศาสตร์ภาคพิเศษ รุ่น 4
+มหาวิทยาลัยรามคำแหง
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Signature</h3>
+
+<p>
+
+เสน่ห์ของพี่เงาะคือความสง่างาม
+รอยยิ้มที่อบอุ่น
+และพลังการแสดงที่ตราตรึง
+ทั้งในละครพีเรียดและดราม่า
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- WORKS -->
+
+<section id="works">
+
+<h2 class="section-title">
+Selected Works
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>สายโลหิต</h3>
+
+<p>
+รับบท “ลำดวน”
+หนึ่งในบทบาทที่ผู้ชมจดจำ ✨
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>มาตาลดา</h3>
+
+<p>
+รับบท “ชนิดา”
+อีกบทบาทร่วมสมัยที่ได้รับความสนใจ
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>พายุทราย</h3>
+
+<p>
+รับบท “ณิชา”
+สะท้อนความเข้มข้นของดราม่า
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>มนต์รักแม่กลอง</h3>
+
+<p>
+รับบท “บัว / สไบนาง”
+ผลงานที่ยังคงความสง่างามคลาสสิก
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MOMENTS -->
+
+<section id="moments">
+
+<h2 class="section-title">
+Favorite Moments
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>🌷 Elegance</h3>
+
+<p>
+
+ทุก appearance มีความ classic
+และ refined แบบนักแสดงยุคทอง
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🎬 Acting</h3>
+
+<p>
+
+สายตาและน้ำเสียงที่มีเสน่ห์
+ทำให้หลายบทบาทยังถูกพูดถึงเสมอ
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>💌 Comfort</h3>
+
+<p>
+
 “บางคนกลายเป็น comfort zone
-ผ่านเพียงรอยยิ้มบนหน้าจอ” 🤍
-</p>
+ผ่านเพียงรอยยิ้มบนหน้าจอ”
 
-</div>
-
-<div class="card">
-
-<h2>🌙 Midnight Thoughts</h2>
-
-<p>
-คืนนี้ก็ยังเปิดคลิปเดิม
-แล้วยิ้มเหมือนครั้งแรกที่เห็น 🫶
 </p>
 
 </div>
 
 </div>
 
-</div>
+</section>
 
-<!-- popup -->
+<!-- QUOTE -->
 
-<div id="popup">
+<div class="quote">
 
-<h2>💖 SECRET FILE OPENED 💖</h2>
-
-<p>
-Kochakorn detected in your heart...<br><br>
-สถานะปัจจุบัน:<br>
-แฟนคลับที่คลั่งรักหนักมาก ✨
-</p>
-
-<button onclick="closePopup()">
-CLOSE
-</button>
+“บางความทรงจำยังสวยงาม
+แม้เวลาจะผ่านไปนานเพียงใด” 🌙
 
 </div>
+
+<!-- SOCIAL -->
+
+<section id="social">
+
+<h2 class="section-title">
+Social & Fan Accounts
+</h2>
+
+<div class="socials">
+
+<a href="https://www.instagram.com/kochakorn1516/" target="_blank">
+Instagram
+</a>
+
+<a href="#">
+Fan Archive
+</a>
+
+<a href="#">
+Gallery
+</a>
+
+<a href="#">
+Moments
+</a>
+
+</div>
+
+</section>
 
 <footer>
 
@@ -277,19 +605,11 @@ made with love for kochakorn ♡
 
 <script>
 
-function showPopup(){
+function showMessage(){
 
-document
-.getElementById("popup")
-.classList.add("show");
-
-}
-
-function closePopup(){
-
-document
-.getElementById("popup")
-.classList.remove("show");
+alert(
+"Welcome to Kochakorn Archive ✨"
+);
 
 }
 
